@@ -124,7 +124,8 @@ make run
 
 → VS Code Git Clone
 → bash setup.sh || ./setup.sh
-→ make setup
+→ make init
+→ make run
 → F5
 ```
 

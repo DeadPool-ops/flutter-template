@@ -7,6 +7,7 @@
 init:
 	flutter create --platforms=android,ios,web,windows,linux,macos .
 	flutter pub get
+	flutter gen-l10n
 	dart run build_runner build --delete-conflicting-outputs
 	@echo "✅ Project is ready! Run 'make run' to start."
 
@@ -109,6 +110,7 @@ format:
 
 ## Full clean + reinstall + regenerate
 setup: clean get gen
+	flutter gen-l10n
 
 ## Check Flutter installation
 doctor:

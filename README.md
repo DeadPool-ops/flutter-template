@@ -121,6 +121,11 @@ make setup
 
 # 4. Run the app
 make run
+
+→ VS Code Git Clone
+→ bash setup.sh || ./setup.sh
+→ make setup
+→ F5
 ```
 
 ---

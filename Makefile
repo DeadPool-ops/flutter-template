@@ -1,4 +1,16 @@
-.PHONY: get clean build run test gen lint fix
+.PHONY: get clean build run test gen lint fix setup init
+
+## ─── First Time Setup ────────────────────────────────────────────────────────
+
+## Run this once when you first clone the template
+## Generates all platform folders + installs deps + generates code
+init:
+	flutter create --platforms=android,ios,web,windows,linux,macos .
+	flutter pub get
+	dart run build_runner build --delete-conflicting-outputs
+	@echo "✅ Project is ready! Run 'make run' to start."
+
+## ─── Daily Dev ───────────────────────────────────────────────────────────────
 
 ## Install dependencies
 get:
@@ -8,32 +20,74 @@ get:
 clean:
 	flutter clean && flutter pub get
 
-## Build release APK
-build-apk:
-	flutter build apk --release
+## Generate code (freezed, injectable, json_serializable etc.)
+gen:
+	dart run build_runner build --delete-conflicting-outputs
 
-## Build release IPA
-build-ios:
-	flutter build ios --release --no-codesign
+## Watch and regenerate on file change
+gen-watch:
+	dart run build_runner watch --delete-conflicting-outputs
 
 ## Run in debug mode
 run:
 	flutter run
 
-## Run with flavor (example: make run-dev)
+## Run with env flags
 run-dev:
 	flutter run --dart-define=ENV=dev
 
 run-prod:
 	flutter run --dart-define=ENV=prod
 
-## Generate code (freezed, injectable, etc.)
-gen:
-	dart run build_runner build --delete-conflicting-outputs
+## ─── Platform Specific ───────────────────────────────────────────────────────
 
-## Watch and generate continuously
-gen-watch:
-	dart run build_runner watch --delete-conflicting-outputs
+## Add only Android
+add-android:
+	flutter create --platforms=android .
+
+## Add only iOS
+add-ios:
+	flutter create --platforms=ios .
+
+## Add only Web
+add-web:
+	flutter create --platforms=web .
+
+## Add only Windows
+add-windows:
+	flutter create --platforms=windows .
+
+## Add only Linux
+add-linux:
+	flutter create --platforms=linux .
+
+## Add only macOS
+add-macos:
+	flutter create --platforms=macos .
+
+## ─── Build ───────────────────────────────────────────────────────────────────
+
+## Build release APK (Android)
+build-apk:
+	flutter build apk --release
+
+## Build release App Bundle (Android - for Play Store)
+build-aab:
+	flutter build appbundle --release
+
+## Build release IPA (iOS)
+build-ios:
+	flutter build ios --release --no-codesign
+
+## Build release Web
+build-web:
+	flutter build web --release
+
+## Build release Windows
+build-windows:
+	flutter build windows --release
+
+## ─── Testing & Quality ───────────────────────────────────────────────────────
 
 ## Run all tests
 test:
@@ -51,9 +105,15 @@ fix:
 format:
 	dart format lib/ test/
 
-## All-in-one: clean, get, gen
+## ─── Utilities ───────────────────────────────────────────────────────────────
+
+## Full clean + reinstall + regenerate
 setup: clean get gen
 
-## Print folder structure
+## Check Flutter installation
+doctor:
+	flutter doctor -v
+
+## Print all dart files
 tree:
 	find lib -type f | sort

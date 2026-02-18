@@ -17,15 +17,14 @@ dependencies:
   equatable: ^2.0.5
 
   # Navigation
-  go_router: ^13.0.0
+  go_router: ^13.2.0
 
   # Dependency Injection
   get_it: ^7.6.4
   injectable: ^2.3.2
 
   # Networking
-  dio: ^5.4.0
-  retrofit: ^4.1.0
+  dio: ^5.3.4
   pretty_dio_logger: ^1.3.1
 
   # Local Storage
@@ -54,7 +53,6 @@ dev_dependencies:
   injectable_generator: ^2.4.1
   freezed: ^2.4.6
   json_serializable: ^6.7.1
-  retrofit_generator: ^8.1.0
   hive_generator: ^2.0.1
   mocktail: ^1.0.1
 

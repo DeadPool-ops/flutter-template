@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
-
-import '../errors/failures.dart';
+import 'package:error_notification_app/core/errors/failures.dart';
 
 /// Base class for all use cases.
 /// [Type] is the return type, [Params] is the input parameters.
